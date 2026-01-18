@@ -1,20 +1,27 @@
 const axios = require("axios");
+const cheerio = require("cheerio");
 
 async function redditDownloader(url) {
   try {
-    const res = await axios.post(
-      "https://submagic-free-tools.fly.dev/api/reddit-download",
-      { url },
-      {
-        headers: {
-          accept: "*/*",
-          "content-type": "application/json",
-          referer: "https://submagic-free-tools.fly.dev/reddit-downloader",
-        },
-      }
-    );
+    const rapidUrl = `https://rapidsave.com/info?url=${encodeURIComponent(url)}`;
 
-    return res.data;
+    const res = await axios.get(rapidUrl, {
+      headers: {
+        accept: "text/html",
+        "user-agent": "Mozilla/5.0",
+        referer: "https://rapidsave.com/",
+      },
+    });
+
+    const $ = cheerio.load(res.data);
+
+    const downloadUrl = $("a.downloadbutton").attr("href");
+
+    if (!downloadUrl) {
+      throw new Error("Download link not found");
+    }
+
+    return downloadUrl;
   } catch (err) {
     throw new Error(err.message);
   }

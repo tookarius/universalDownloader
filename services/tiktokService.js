@@ -1,68 +1,69 @@
 const axios = require("axios");
 const cheerio = require("cheerio");
+const qs = require("qs");
 
 async function fetchTikTokData(videoUrl) {
-  const endpoint = "https://tikdownloader.io/api/ajaxSearch";
-
   try {
-    const res = await axios.post(
-      endpoint,
-      new URLSearchParams({ q: videoUrl, lang: "en" }),
-      {
-        headers: {
-          accept: "*/*",
-          "content-type": "application/x-www-form-urlencoded; charset=UTF-8",
-          "x-requested-with": "XMLHttpRequest",
-          Referer: "https://tikdownloader.io/en",
-        },
-      }
-    );
+    const body = qs.stringify({
+      id: videoUrl,
+      locale: "en",
+      tt: "dHl6Ylg4",
+    });
 
-    const html = res.data.data;
+    const res = await axios.post("https://ssstik.io/abc?url=dl", body, {
+      headers: {
+        accept: "*/*",
+        "content-type": "application/x-www-form-urlencoded",
+        "user-agent": "Mozilla/5.0",
+        referer: "https://ssstik.io/en-1",
+        "hx-request": "true",
+        "hx-target": "target",
+        "hx-trigger": "_gcaptcha_pt",
+      },
+    });
+
+    const html = res.data;
     const $ = cheerio.load(html);
 
-    const title = $(".thumbnail h3").text().trim() || null;
-    const thumbnail = $(".thumbnail img").attr("src") || null;
+    const title =
+      $("#avatar_and_text h2").text().trim() ||
+      $("#avatarAndTextUsual h2").text().trim() ||
+      null;
+
+    const thumbnail =
+      $(".result_author").attr("src") ||
+      $("#mainpicture").css("background-image") ||
+      null;
 
     const downloads = [];
 
-    // ===========================
     // VIDEO / AUDIO DOWNLOADS
-    // ===========================
-    $(".dl-action a").each((i, el) => {
-      const text = $(el).text().trim();
+    $("a.download_link:not(.slide)").each((_, el) => {
+      const text = $(el).text().replace(/\s+/g, " ").trim();
       const url = $(el).attr("href");
 
-      // ❗ DO NOT push empty or "#" URLs
       if (!url || url === "#") return;
 
       downloads.push({ text, url });
     });
 
-    // ===========================
-    // PHOTO MODE DOWNLOADS
-    // ===========================
-    const photos = $(".photo-list .download-box li");
+    // PHOTO / SLIDE DOWNLOADS
+    $("a.download_link.slide").each((_, el) => {
+      const url = $(el).attr("href");
 
-    if (photos.length > 0) {
-      photos.each((i, el) => {
-        const text = $(el).find("a").text().trim();
-        const url = $(el).find("a").attr("href");
+      if (!url || url === "#") return;
 
-        if (!url || url === "#") return;
-
-        downloads.push({ text, url });
-      });
-    }
+      downloads.push({ url });
+    });
 
     return {
-      status: res.data.status,
+      status: true,
       title,
       thumbnail,
       downloads,
     };
   } catch (error) {
-    throw new Error(`TikDownloader request failed: ${error.message}`);
+    throw new Error(`SSSTik request failed: ${error.message}`);
   }
 }
 
