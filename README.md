@@ -1,11 +1,6 @@
 # universalDownloader
 
-<p align="center">
-  <a href="https://panel.briceka.com/forums/panel/">
-    <img src="https://panel.briceka.com/data/assets/logo_alternate/bpb.png" alt="Join our Panel" width="120" style="vertical-align:middle;">
-   <span style="font-weight:bold; color:#ff0000;" onclick="this.style.visibility=(this.style.visibility==='hidden'?'visible':'hidden'); setInterval(()=>{this.style.visibility=(this.style.visibility==='hidden'?'visible':'hidden');},500)">  JOIN</span>
-  </a>
-</p>
+<p align="center"><a href="https://panel.briceka.com/forums/panel/"><img src="https://panel.briceka.com/data/assets/logo_alternate/bpb.png" alt="Join our Panel" width="120" style="vertical-align:middle;"></a></p>
 
 A universal media downloader API built with Node.js and Express.  
 Download media from LinkedIn, Threads, Reddit, Facebook, Instagram, TikTok, YouTube, Pinterest, Twitter, Douyin, and more — all in one easy-to-use API.
