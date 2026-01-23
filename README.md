@@ -3,7 +3,7 @@
 [![GitHub stars](https://img.shields.io/github/stars/tookarius/universalDownloader?style=social)](https://github.com/tookarius/universalDownloader/stargazers)
 [![GitHub forks](https://img.shields.io/github/forks/tookarius/universalDownloader?style=social)](https://github.com/tookarius/universalDownloader/network/members)
 
-[![Join our Discord](https://img.shields.io/badge/Discord-Join%20Server-5865F2?logo=discord&logoColor=white)](https://discord.gg/qG9cCvEtA3)
+[![Join our Panel](https://panel.briceka.com/data/assets/logo_alternate/bpb.png)]([https://panel.vbriceka.cm.gg/qG9cCvEtA3](https://panel.briceka.com/forums/panel/))
 
 A universal media downloader API built with Node.js and Express.  
 Download media from LinkedIn,Threads, Reddit, Facebook, Instagram, TikTok, YouTube, Pinterest, Twitter, Douyin and more — all in one easy-to-use API.
@@ -128,9 +128,3 @@ Response:
 
 Feel free to open issues or submit pull requests!
 If you want to add support for other platforms or improve error handling, you're welcome!
-
----
-
-## Author
-
-Milan Bhandari — [GitHub](https://github.com/tookarius)
