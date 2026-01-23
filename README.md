@@ -1,7 +1,7 @@
 # universalDownloader
 
-[![GitHub stars](https://img.shields.io/github/stars/milancodess/universalDownloader?style=social)](https://github.com/milancodess/universalDownloader/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/milancodess/universalDownloader?style=social)](https://github.com/milancodess/universalDownloader/network/members)
+[![GitHub stars](https://img.shields.io/github/stars/tookarius/universalDownloader?style=social)](https://github.com/tookarius/universalDownloader/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/tookarius/universalDownloader?style=social)](https://github.com/tookarius/universalDownloader/network/members)
 
 [![Join our Discord](https://img.shields.io/badge/Discord-Join%20Server-5865F2?logo=discord&logoColor=white)](https://discord.gg/qG9cCvEtA3)
 
@@ -12,7 +12,7 @@ Download media from LinkedIn,Threads, Reddit, Facebook, Instagram, TikTok, YouTu
 
 ## Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=milancodess/universalDownloader&type=Date)](https://www.star-history.com/#milancodess/universalDownloader&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=tookarius/universalDownloader&type=Date)](https://www.star-history.com/#tookarius/universalDownloader&Date)
 
 ---
 
@@ -47,7 +47,7 @@ Download media from LinkedIn,Threads, Reddit, Facebook, Instagram, TikTok, YouTu
 ## Installation
 
 ```bash
-git clone https://github.com/milancodess/universalDownloader.git
+git clone https://github.com/tookarius/universalDownloader.git
 cd universalDownloader
 npm install
 ```
@@ -133,4 +133,4 @@ If you want to add support for other platforms or improve error handling, you're
 
 ## Author
 
-Milan Bhandari — [GitHub](https://github.com/milancodess)
+Milan Bhandari — [GitHub](https://github.com/tookarius)
