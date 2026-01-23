@@ -1,29 +1,14 @@
 # universalDownloader
 
-[![GitHub stars](https://img.shields.io/github/stars/tookarius/universalDownloader?style=social)](https://github.com/tookarius/universalDownloader/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/tookarius/universalDownloader?style=social)](https://github.com/tookarius/universalDownloader/network/members)
-
 <p align="center">
   <a href="https://panel.briceka.com/forums/panel/">
     <img src="https://panel.briceka.com/data/assets/logo_alternate/bpb.png" alt="Join our Panel" width="120" style="vertical-align:middle;">
-    <span style="font-weight:bold; color:#ff0000; animation: blinker 1s linear infinite;">JOIN</span>
+   <span style="font-weight:bold; color:#ff0000;" onclick="this.style.visibility=(this.style.visibility==='hidden'?'visible':'hidden'); setInterval(()=>{this.style.visibility=(this.style.visibility==='hidden'?'visible':'hidden');},500)">  JOIN</span>
   </a>
 </p>
 
-<style>
-@keyframes blinker {
-  50% { opacity: 0; }
-}
-</style>
-
 A universal media downloader API built with Node.js and Express.  
 Download media from LinkedIn, Threads, Reddit, Facebook, Instagram, TikTok, YouTube, Pinterest, Twitter, Douyin, and more — all in one easy-to-use API.
-
----
-
-## Star History
-
-[![Star History Chart](https://api.star-history.com/svg?repos=tookarius/universalDownloader&type=Date)](https://www.star-history.com/#tookarius/universalDownloader&Date)
 
 ---
 
@@ -53,47 +38,6 @@ Download media from LinkedIn, Threads, Reddit, Facebook, Instagram, TikTok, YouT
 - Modular architecture: services, controllers, routes
 
 ---
-
-## Installation
-
-```bash
-git clone https://github.com/tookarius/universalDownloader.git
-cd universalDownloader
-npm install
-```
-
----
-
-## Usage
-
-1. Start the server:
-
-```bash
-npm start
-```
-
-2. Access API at:
-   [http://localhost:3000/](http://localhost:3000/)
-
-3. Example API request to download Instagram media:
-
-```
-GET http://localhost:3000/api/meta/download?url=https://www.instagram.com/p/DLHQfPiyucu/
-```
-
-Response:
-
-```json
-{
-  "success": true,
-  "data": {
-    // media download info here
-  }
-}
-```
-
----
-
 ## API Endpoints
 
 | Endpoint                    | Description                       | Method |
@@ -116,23 +60,6 @@ Response:
 | `/api/tumblr/download`      | Download Tumblr media             | GET    |
 | `/api/twitter/download`     | Download Twitter media            | GET    |
 | `/api/youtube/download`     | Download YouTube media            | GET    |
-
-**~~See the full interactive API docs with Swagger at `/api-docs`.~~**
-
----
-
-## Project Structure
-
-```
-.
-├── controllers/       # API route handlers
-├── routes/            # Express route definitions
-├── services/          # Business logic & downloader functions
-├── server.js          # Express app entry point
-└── package.json
-```
-
----
 
 ## Contributing
 
