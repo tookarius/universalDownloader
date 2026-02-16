@@ -9,55 +9,55 @@ async function fetchDouyinVideoInfo(douyinUrl) {
       cftoken: "",
     });
 
-    const response = await axios.post(
-      "https://savetik.co/api/ajaxSearch",
+    const { data } = await axios.post(
+      "https://tikvideo.app/api/ajaxSearch",
       params.toString(),
       {
         headers: {
+          accept: "*/*",
           "content-type": "application/x-www-form-urlencoded; charset=UTF-8",
           "x-requested-with": "XMLHttpRequest",
-          Referer: "https://savetik.co/en/douyin-downloader",
-          accept: "*/*",
-          "accept-language": "en-US,en;q=0.5",
+          Referer: "https://tikvideo.app/en/download-douyin-video",
         },
-      }
+      },
     );
 
-    if (response.data.status !== "ok") {
-      throw new Error("API returned error: " + JSON.stringify(response.data));
+    if (data.status !== "ok" || !data.data) {
+      throw new Error("Tikvideo returned invalid response");
     }
 
-    const $ = cheerio.load(response.data.data);
+    const $ = cheerio.load(data.data);
 
     const thumbnail =
       $(".tik-left .thumbnail .image-tik img").attr("src") || null;
-    const title = $(".tik-left .thumbnail .content h3").text().trim() || null;
-    const timestamp =
-      $(".tik-left .thumbnail .content p").text().trim() || null;
 
-    const videoLinks = [];
-    $(".tik-right .dl-action a.tik-button-dl").each((i, el) => {
-      videoLinks.push({
-        label: $(el).text().trim(),
-        url: $(el).attr("href"),
-      });
+    const title = $(".tik-left .thumbnail .content h3").text().trim() || null;
+
+    const duration = $(".tik-left .thumbnail .content p").text().trim() || null;
+
+    const links = [];
+
+    $(".tik-right .dl-action a.tik-button-dl").each((_, el) => {
+      const label = $(el).text().trim();
+      const url = $(el).attr("href");
+
+      if (url && !label.toLowerCase().includes("profile")) {
+        links.push({ label, url });
+      }
     });
 
-    if (
-      videoLinks.length > 0 &&
-      videoLinks[videoLinks.length - 1].label.toLowerCase().includes("profile")
-    ) {
-      videoLinks.pop();
-    }
+    const preview = $("#vid").attr("data-src") || null;
 
     return {
-      thumbnail,
       title,
-      timestamp,
-      videoLinks,
+      duration,
+      thumbnail,
+      preview,
+      links,
     };
-  } catch (error) {
-    throw error;
+  } catch (err) {
+    console.error("Douyin scrape failed:", err.message);
+    throw err;
   }
 }
 
